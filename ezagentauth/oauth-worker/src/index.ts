@@ -169,24 +169,37 @@ function homePage(): Response {
   <div class="container">
     <h1>ez-google</h1>
     <p class="tagline">
-      A <span class="highlight">skill</span> for any AI agent to access your Google Workspace.<br>
-      No bloat. No MCP servers. Just simple Python scripts.
+      Agent-friendly Google Workspace tools.<br>
+      No API keys. No MCP servers. Just simple Python scripts.
     </p>
 
     <div class="section">
-      <h2>How it works</h2>
+      <h2>Install</h2>
+      <div class="code" style="margin-bottom: 12px;">
+        <span style="color: #888;"># Claude Code</span><br>
+        claude plugin install --url https://github.com/araa47/ez-google
+      </div>
+      <div class="code" style="margin-bottom: 12px;">
+        <span style="color: #888;"># Cursor / OpenClaw</span><br>
+        npx clawhub@latest install ez-google
+      </div>
+      <p style="color: #666; font-size: 13px; margin-top: 8px;">Or copy the <code>skills/ez-google</code> folder into your agent's skills directory.</p>
+    </div>
+
+    <div class="section">
+      <h2>How auth works</h2>
       <div class="features">
         <div class="feature">
-          <div class="feature-title">1. One-click auth</div>
-          <div class="feature-desc">Click the button below, sign in with Google, and share the token with your agent. That's it.</div>
+          <div class="feature-title">1. Agent sends you a link</div>
+          <div class="feature-desc">Your agent runs <code>auth.py login</code> and shares this website link with you.</div>
         </div>
         <div class="feature">
-          <div class="feature-title">2. Simple scripts</div>
-          <div class="feature-desc">Your agent runs Python scripts like <code>gmail.py list</code> or <code>gcal.py create</code>. No complex setup.</div>
+          <div class="feature-title">2. You sign in & copy token</div>
+          <div class="feature-desc">Click the link, sign in with Google, and copy the token shown.</div>
         </div>
         <div class="feature">
-          <div class="feature-title">3. Works everywhere</div>
-          <div class="feature-desc">Claude Code, Cursor, OpenClaw, or any agent that can run shell commands.</div>
+          <div class="feature-title">3. Share token with agent</div>
+          <div class="feature-desc">Paste the token back to your agent. Done! Your agent can now access Gmail, Calendar, Drive, and more.</div>
         </div>
       </div>
     </div>

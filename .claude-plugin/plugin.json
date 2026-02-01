@@ -1,0 +1,12 @@
+{
+  "name": "ez-google",
+  "description": "Agent-friendly Google Workspace tools. Access Gmail, Calendar, Drive, Docs, Sheets, Slides, and Contacts with simple CLI scripts. Hosted OAuth means no API keys or credentials to manage - users just click a link and paste back a token.",
+  "version": "1.0.0",
+  "author": {
+    "name": "ez-google"
+  },
+  "repository": "https://github.com/araa47/ez-google",
+  "homepage": "https://ezagentauth.com",
+  "license": "MIT",
+  "keywords": ["google", "gmail", "calendar", "drive", "docs", "sheets", "oauth", "ai-agent", "workspace"]
+}
