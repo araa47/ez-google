@@ -1,0 +1,15 @@
+name = "simple-google-workspace-oauth"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+routes = [
+  { pattern = "ezagentauth.com", custom_domain = true }
+]
+
+[vars]
+# These are set via `wrangler secret put`
+# GOOGLE_CLIENT_ID = ""
+# GOOGLE_CLIENT_SECRET = ""
+
+# The redirect URI must match what's configured in Google Cloud Console
+# Should be: https://ezagentauth.com/callback
