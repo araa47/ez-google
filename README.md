@@ -9,7 +9,11 @@ Built for AI agents with zero credential management - users just click a link an
 ### Claude Code
 
 ```bash
-claude plugin install --url https://github.com/araa47/ez-google
+# Add the marketplace
+/plugin marketplace add araa47/ez-google
+
+# Install the plugin
+/plugin install ez-google@ez-google
 ```
 
 ### ClawHub
@@ -18,9 +22,9 @@ claude plugin install --url https://github.com/araa47/ez-google
 npx clawhub@latest install ez-google
 ```
 
-### Other Agents (Cursor, OpenClaw, etc.)
+### Other Agents (Cursor, Windsurf, etc.)
 
-Copy the `skills/ez-google` folder into your agent's skills directory.
+Copy the `ez-google/skills/ez-google` folder into your agent's skills directory.
 
 ---
 
