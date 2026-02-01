@@ -177,13 +177,14 @@ function homePage(): Response {
       <h2>Install</h2>
       <div class="code" style="margin-bottom: 12px;">
         <span style="color: #888;"># Claude Code</span><br>
-        claude plugin install --url https://github.com/araa47/ez-google
+        /plugin marketplace add araa47/ez-google<br>
+        /plugin install ez-google@ez-google
       </div>
       <div class="code" style="margin-bottom: 12px;">
-        <span style="color: #888;"># Cursor / OpenClaw</span><br>
+        <span style="color: #888;"># ClawHub</span><br>
         npx clawhub@latest install ez-google
       </div>
-      <p style="color: #666; font-size: 13px; margin-top: 8px;">Or copy the <code>skills/ez-google</code> folder into your agent's skills directory.</p>
+      <p style="color: #666; font-size: 13px; margin-top: 8px;">Or copy the <code>ez-google/skills/ez-google</code> folder into your agent's skills directory.</p>
     </div>
 
     <div class="section">

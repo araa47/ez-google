@@ -1,0 +1,13 @@
+{
+  "name": "ez-google",
+  "owner": {
+    "name": "araa47"
+  },
+  "plugins": [
+    {
+      "name": "ez-google",
+      "source": "./ez-google",
+      "description": "Agent-friendly Google Workspace tools. Access Gmail, Calendar, Drive, Docs, Sheets, Slides, and Contacts with simple CLI scripts. Hosted OAuth - no API keys needed."
+    }
+  ]
+}
