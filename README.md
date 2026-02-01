@@ -1,13 +1,32 @@
-# ezgoogle
+# ez-google
 
-Simple Google Workspace tools for AI agents. No MCP servers, just Python scripts.
+**Agent-friendly Google Workspace tools.** Simple Python scripts for Gmail, Calendar, Drive, Docs, Sheets, Slides, Contacts, and Chat.
 
-**Website:** [ezagentauth.com](https://ezagentauth.com)
+Built for AI agents with zero credential management - users just click a link and paste back a token. No API keys, no OAuth setup, no client secrets.
 
+## Install
+
+### Claude Code
+
+```bash
+claude plugin install --url https://github.com/araa47/ez-google
+```
+
+### ClawHub
+
+```bash
+npx clawhub@latest install ez-google
+```
+
+### Other Agents (Cursor, OpenClaw, etc.)
+
+Copy the `skills/ez-google` folder into your agent's skills directory.
+
+---
 
 ## Why This Exists
 
-**The Problem:** Every MCP server, extension, and AI agent skill that accesses Google APIs requires OAuth setup. This means:
+**The Problem:** Every MCP server, extension, and AI agent skill that accesses Google APIs requires OAuth setup:
 
 - Create a Google Cloud project
 - Configure OAuth consent screens
@@ -15,44 +34,24 @@ Simple Google Workspace tools for AI agents. No MCP servers, just Python scripts
 - Generate credentials
 - Manage client secrets
 
-This is painful for normal users and even worse for AI agents trying to help them through it.
-
-**The Solution:** A hosted OAuth worker that handles all the complexity. Users just click "Sign in with Google" and get a token to share with their agent.
+**The Solution:** A hosted OAuth worker at [ezagentauth.com](https://ezagentauth.com) handles all the complexity. Users just click "Sign in with Google" and get a token.
 
 ## Security
-
-**Is this safe?** Yes. Here's why:
 
 | Concern | How it's handled |
 |---------|------------------|
 | **Your Google password** | Never seen by us. You authenticate directly with Google. |
-| **OAuth tokens** | Displayed once in your browser, never stored on our servers. You control who you share it with. |
+| **OAuth tokens** | Displayed once in your browser, never stored on our servers. |
 | **What we can access** | Nothing. The token goes to your agent, not to us. |
 | **Token scope** | You see exactly what permissions are requested before authorizing. |
 | **Revocation** | Revoke anytime at [myaccount.google.com/permissions](https://myaccount.google.com/permissions) |
 
-**Architecture:**
-- Cloudflare Worker = stateless, no database, no storage
-- OAuth credentials stored as Cloudflare secrets (encrypted, never in code)
-- Token displayed client-side only, then you close the page
-- **Open source** - Audit the code yourself
+**Architecture:** Cloudflare Worker (stateless, no database), OAuth credentials as encrypted secrets, token displayed client-side only, fully open source.
 
-## Philosophy
+---
 
-- **No MCP servers** - Just direct API calls with Python/httpx
-- **Simple auth** - OAuth via hosted worker (no credentials to manage)
-- **Agent-readable** - SKILL.md files are instructions for AI agents
-- **Portable** - Works with any agent that can run shell commands
+## Issues & Contributing
 
+Found a bug or have a feature request? [Open an issue](https://github.com/araa47/ez-google/issues) or submit a PR!
 
-
-## Quick Start
-
-- `npx clawhub@latest install ez-google`
-
-or copy the `ez-google` folder into your agent's skills directory. That's it - your agent will handle the rest.
-
-Works with Claude Code, Cursor, OpenClaw, and any agent that can run shell commands.
-
-**Coming soon:**
-- `claude code install ez-google` and similar one-liner installs
+**Repository:** [github.com/araa47/ez-google](https://github.com/araa47/ez-google)
