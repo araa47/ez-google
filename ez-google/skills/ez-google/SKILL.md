@@ -35,7 +35,6 @@ gmail.py labels                      # List labels
 # Bulk operations (up to 1000 messages per API call)
 gmail.py bulk-label "query" --add LABEL --remove LABEL  # Add/remove labels
 gmail.py bulk-trash "query" [-y]     # Move to trash (use -y to skip confirmation)
-gmail.py bulk-delete "query" [-y]    # Permanently delete (requires elevated scope)
 ```
 
 **Bulk examples:**
