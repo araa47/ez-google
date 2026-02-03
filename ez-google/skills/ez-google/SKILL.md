@@ -31,6 +31,17 @@ gmail.py get MESSAGE_ID              # Read email
 gmail.py send "to" "subject" "body"  # Send email
 gmail.py draft "to" "subject" "body" # Create draft
 gmail.py labels                      # List labels
+
+# Bulk operations (up to 1000 messages per API call)
+gmail.py bulk-label "query" --add LABEL --remove LABEL  # Add/remove labels
+gmail.py bulk-trash "query" [-y]     # Move to trash (use -y to skip confirmation)
+```
+
+**Bulk examples:**
+```bash
+gmail.py bulk-label "from:newsletter@example.com" --add ARCHIVE --remove INBOX
+gmail.py bulk-trash "subject:alert older_than:30d" -y
+gmail.py bulk-label "category:promotions" --add Label_3  # Use label IDs from `labels`
 ```
 
 ## Calendar

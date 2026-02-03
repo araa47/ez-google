@@ -82,27 +82,6 @@ def batch_modify(service, message_ids: list[str], add_labels: list[str] | None =
     return processed
 
 
-def batch_delete(service, message_ids: list[str]):
-    """Permanently delete messages in chunks of up to 1000."""
-    if not message_ids:
-        return 0
-
-    total_batches = math.ceil(len(message_ids) / BATCH_SIZE)
-    processed = 0
-
-    for batch_num in range(total_batches):
-        start = batch_num * BATCH_SIZE
-        end = start + BATCH_SIZE
-        batch_ids = message_ids[start:end]
-
-        click.echo(f"Processing batch {batch_num + 1} of {total_batches}... ({len(batch_ids)} messages)")
-
-        service.users().messages().batchDelete(userId="me", body={"ids": batch_ids}).execute()
-        processed += len(batch_ids)
-
-    return processed
-
-
 def get_headers(msg):
     return {h["name"]: h["value"] for h in msg.get("payload", {}).get("headers", [])}
 
@@ -285,37 +264,6 @@ def bulk_trash(query: str, max_results: int | None, yes: bool):
 
     processed = batch_modify(service, message_ids, add_labels=["TRASH"])
     click.echo(f"Done. Trashed {processed} messages.")
-
-
-@cli.command("bulk-delete")
-@click.argument("query")
-@click.option("--max", "-n", "max_results", type=int, help="Max messages to delete")
-@click.option("--yes", "-y", is_flag=True, help="Skip confirmation prompt")
-def bulk_delete_cmd(query: str, max_results: int | None, yes: bool):
-    """PERMANENTLY delete all messages matching a query.
-
-    Uses batchDelete to efficiently delete up to 1000 messages per API call.
-    WARNING: This action is irreversible! Messages are permanently deleted.
-
-    Example: gmail.py bulk-delete "in:trash older_than:30d" -y
-    """
-    service = get_service()
-
-    click.echo(f"Collecting messages matching: {query}")
-    message_ids = collect_message_ids(service, query, max_results)
-
-    if not message_ids:
-        click.echo("No messages found.")
-        return
-
-    click.echo(f"Found {len(message_ids)} messages to PERMANENTLY DELETE.")
-    click.secho("WARNING: This action is irreversible!", fg="red", bold=True)
-
-    if not yes:
-        click.confirm("Are you sure you want to permanently delete these messages?", abort=True)
-
-    processed = batch_delete(service, message_ids)
-    click.echo(f"Done. Permanently deleted {processed} messages.")
 
 
 if __name__ == "__main__":
