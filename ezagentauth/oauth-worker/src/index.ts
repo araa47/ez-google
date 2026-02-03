@@ -694,8 +694,19 @@ function privacyPage(): Response {
       font-size: 20px;
       margin-top: 32px;
     }
+    h3 {
+      color: #ccc;
+      font-size: 16px;
+      margin-top: 24px;
+    }
     p, li {
       color: #aaa;
+    }
+    ul, ol {
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 8px;
     }
     .highlight {
       background: #1a1a1a;
@@ -711,6 +722,17 @@ function privacyPage(): Response {
     }
     a {
       color: #4ade80;
+    }
+    .section {
+      background: #141414;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .section h2 {
+      margin-top: 0;
+      color: #fff;
     }
     .back {
       margin-top: 48px;
@@ -729,36 +751,146 @@ function privacyPage(): Response {
 <body>
   <div class="container">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: February 2025</p>
+    <p class="updated">Last updated: February 2026</p>
 
     <div class="highlight">
-      <p>We do not collect, store, or have access to any of your data. Period.</p>
+      <p>ezagentauth does not collect, store, or have access to any of your Google user data. Your data stays between you and Google.</p>
     </div>
 
-    <h2>What happens when you sign in</h2>
-    <p>When you click "Sign in with Google":</p>
-    <ol>
-      <li>You are redirected to Google's servers (not ours)</li>
-      <li>You authenticate directly with Google</li>
-      <li>Google sends a token back to your browser</li>
-      <li>The token is displayed on screen for you to copy</li>
-      <li>You close the page</li>
-    </ol>
+    <p>This Privacy Policy explains how ezagentauth ("we", "our", or "the Service") handles data when you use our OAuth authentication service at ezagentauth.com. This policy complies with the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>.</p>
 
-    <h2>What we store</h2>
-    <p><strong>Nothing.</strong> This service runs on Cloudflare Workers, which is stateless. There is no database, no logs of your tokens, no analytics tracking you.</p>
+    <div class="section">
+      <h2>1. Data Accessed</h2>
+      <p>When you authenticate through our service, you authorize access to the following types of Google user data (OAuth scopes):</p>
+      <ul>
+        <li><strong>Google Calendar</strong> - Read and write access to your calendar events</li>
+        <li><strong>Google Drive</strong> - Access to view and manage files in your Google Drive</li>
+        <li><strong>Google Docs</strong> - Access to view and manage your Google Docs documents</li>
+        <li><strong>Google Sheets</strong> - Access to view and manage your Google Sheets spreadsheets</li>
+        <li><strong>Google Slides</strong> - Access to view and manage your Google Slides presentations</li>
+        <li><strong>Gmail</strong> - Read and send emails on your behalf</li>
+        <li><strong>Google Contacts</strong> - Read-only access to your contacts</li>
+        <li><strong>Google Chat</strong> - Read spaces and send messages</li>
+        <li><strong>Basic Profile</strong> - Your basic profile information</li>
+      </ul>
+      <p><strong>Important:</strong> While these scopes are requested during authentication, ezagentauth itself does not access, read, or process any of this data. The OAuth token that grants access to these services is provided directly to you.</p>
+    </div>
 
-    <h2>What we can access</h2>
-    <p><strong>Nothing.</strong> Your OAuth token is displayed in your browser and never sent to any server we control. We cannot see it, store it, or use it.</p>
+    <div class="section">
+      <h2>2. Data Usage</h2>
+      <p><strong>ezagentauth does not use your Google user data in any way.</strong></p>
+      <p>Here's exactly what happens during the authentication flow:</p>
+      <ol>
+        <li>You click "Sign in with Google" and are redirected to Google's authentication servers</li>
+        <li>You authenticate directly with Google and approve the requested permissions</li>
+        <li>Google sends an authorization code to our callback endpoint</li>
+        <li>Our server exchanges this code for OAuth tokens with Google's servers</li>
+        <li>The tokens are immediately displayed in your browser for you to copy</li>
+        <li>The tokens exist only in your browser's memory and are never stored on our servers</li>
+      </ol>
+      <p>We do not:</p>
+      <ul>
+        <li>Read any emails, calendar events, documents, or other content from your Google account</li>
+        <li>Send emails or create events on your behalf</li>
+        <li>Analyze or process any of your Google data</li>
+        <li>Use your data for AI/ML model training</li>
+        <li>Use your data for advertising or marketing purposes</li>
+      </ul>
+    </div>
 
-    <h2>Your token</h2>
-    <p>The token you receive grants access to your Google account (with the scopes you approved). You choose who to share it with. You can revoke access anytime at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+    <div class="section">
+      <h2>3. Data Sharing</h2>
+      <p><strong>ezagentauth does not share your Google user data with any third parties.</strong></p>
+      <p>Since we do not collect or store any of your Google data, there is no data to share. Specifically:</p>
+      <ul>
+        <li>We do not sell your data to anyone</li>
+        <li>We do not share your data with advertisers</li>
+        <li>We do not share your data with analytics providers</li>
+        <li>We do not share your data with any other third parties</li>
+      </ul>
+      <p><strong>Your responsibility:</strong> The OAuth token you receive is under your control. When you share this token with an AI agent or any other application, you are granting that application access to your Google account. We are not responsible for how those applications use your data.</p>
+    </div>
 
-    <h2>Open source</h2>
-    <p>This entire service is open source. You can audit the code at <a href="https://github.com/araa47/ez-google">github.com/araa47/ez-google</a>.</p>
+    <div class="section">
+      <h2>4. Data Storage & Protection</h2>
+      <p><strong>ezagentauth does not store any Google user data.</strong></p>
+      
+      <h3>Our Architecture</h3>
+      <p>This service runs on Cloudflare Workers, a stateless serverless platform. Our implementation:</p>
+      <ul>
+        <li><strong>No database:</strong> We have no database of any kind - no SQL, no NoSQL, no key-value store</li>
+        <li><strong>No persistent storage:</strong> Cloudflare Workers do not retain data between requests</li>
+        <li><strong>No logging of user data:</strong> We do not log OAuth tokens, user identifiers, or any Google account information</li>
+        <li><strong>No cookies:</strong> We do not set any cookies on your browser</li>
+        <li><strong>No analytics:</strong> We do not use Google Analytics or any other tracking tools</li>
+      </ul>
 
-    <h2>Contact</h2>
-    <p>Questions? Open an issue on GitHub.</p>
+      <h3>What We Do Store</h3>
+      <p>The only data we store are our OAuth client credentials (Client ID and Client Secret) as encrypted secrets in Cloudflare. These are our application's credentials, not your personal data.</p>
+
+      <h3>Security Measures</h3>
+      <ul>
+        <li>All traffic is encrypted via HTTPS/TLS</li>
+        <li>OAuth client secrets are stored as encrypted environment variables</li>
+        <li>The service is open source for full transparency and audit</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>5. Data Retention & Deletion</h2>
+      <p><strong>Since we do not store any Google user data, there is no data retention period.</strong></p>
+      
+      <h3>Token Lifecycle</h3>
+      <p>OAuth tokens exist only temporarily during the authentication process:</p>
+      <ol>
+        <li>Tokens are generated by Google's servers</li>
+        <li>Tokens pass through our server's memory for less than a second during the exchange</li>
+        <li>Tokens are displayed in your browser</li>
+        <li>Tokens are cleared from server memory immediately after the response is sent</li>
+      </ol>
+      <p>Once you close the browser tab or navigate away, the tokens exist only where you have saved them.</p>
+
+      <h3>Revoking Access</h3>
+      <p>You can revoke the OAuth tokens and disconnect ezagentauth from your Google account at any time:</p>
+      <ol>
+        <li>Visit <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a></li>
+        <li>Find "ezagentauth" in the list of connected apps</li>
+        <li>Click "Remove Access"</li>
+      </ol>
+      <p>This immediately invalidates all tokens issued through our service.</p>
+
+      <h3>Data Deletion Requests</h3>
+      <p>Since we do not store any of your personal data or Google user data, there is no data to delete. If you have any concerns, you can:</p>
+      <ul>
+        <li>Revoke access through Google (as described above)</li>
+        <li>Contact us at the GitHub repository with any questions</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>6. Open Source Transparency</h2>
+      <p>This entire service is open source. You can:</p>
+      <ul>
+        <li>Audit the complete source code at <a href="https://github.com/araa47/ez-google">github.com/araa47/ez-google</a></li>
+        <li>Verify that no data collection occurs</li>
+        <li>Deploy your own instance if you prefer</li>
+        <li>Submit issues or questions on GitHub</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>7. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date. Continued use of the service after changes constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <div class="section">
+      <h2>8. Contact</h2>
+      <p>If you have questions about this Privacy Policy or our data practices, please:</p>
+      <ul>
+        <li>Open an issue on our <a href="https://github.com/araa47/ez-google/issues">GitHub repository</a></li>
+        <li>Review the source code for verification</li>
+      </ul>
+    </div>
 
     <div class="back">
       <a href="/">&larr; Back to home</a>
