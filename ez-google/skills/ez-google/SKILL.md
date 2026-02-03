@@ -57,11 +57,14 @@ gcal.py calendars                    # List calendars
 ## Drive
 
 ```bash
-drive.py list [-n 20]                # List files
+drive.py list [-n 20] [-q "query"]   # List files (query: Drive search syntax)
 drive.py search "query"              # Search by name
 drive.py get FILE_ID                 # File metadata
 drive.py download FILE_ID            # File content
-drive.py create-folder "name"        # Create folder
+drive.py create-folder "name" [--parent ID]  # Create folder
+drive.py find-folder "name"          # Find folder by exact name
+drive.py move FILE_ID PARENT_ID      # Move file/folder to new parent
+drive.py rename FILE_ID "new name"   # Rename file/folder
 ```
 
 ## Docs
