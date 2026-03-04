@@ -145,5 +145,45 @@ def find_folder(name: str):
         click.echo(f"[{f['id']}] {f['name']}")
 
 
+@cli.command()
+@click.argument("file_id")
+@click.argument("new_parent_id")
+def move(file_id: str, new_parent_id: str):
+    """Move a file/folder to a new parent folder."""
+    service = get_service()
+
+    # Get current parents
+    f = service.files().get(fileId=file_id, fields="name,parents").execute()
+    old_parents = ",".join(f.get("parents", []))
+
+    # Move file
+    updated = service.files().update(
+        fileId=file_id,
+        addParents=new_parent_id,
+        removeParents=old_parents,
+        fields="id,name,parents",
+    ).execute()
+
+    click.echo(f"Moved: {updated.get('name')}")
+    click.echo(f"ID: {updated.get('id')}")
+
+
+@cli.command()
+@click.argument("file_id")
+@click.argument("new_name")
+def rename(file_id: str, new_name: str):
+    """Rename a file or folder."""
+    service = get_service()
+
+    updated = service.files().update(
+        fileId=file_id,
+        body={"name": new_name},
+        fields="id,name",
+    ).execute()
+
+    click.echo(f"Renamed to: {updated.get('name')}")
+    click.echo(f"ID: {updated.get('id')}")
+
+
 if __name__ == "__main__":
     cli()
